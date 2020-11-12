@@ -1,0 +1,78 @@
+message.help_message.all: |
+  help: Show help message
+  stop: Stop and exit
+  status: Show status
+  reload: Reload command
+  server: Receive server control command
+  plugin: Plugin manage command
+message.help_message.reload: |
+  reload all: Reload recieve server/config/plugins
+  reload server: Reload recieve server
+  reload config: Reload config
+  reload plugin: Reload plugin
+message.help_message.server: |
+  server start: Start receive server
+  server stop: Stop receive server
+message.help_message.plugin: |
+  plugin list: List all plugins
+  plugin load <file_name>: Load plugin
+  plugin unload <plugin_name>: Unload plugin
+  plugin reload <plugin_name>: Reload plugin
+  plugin enable <file_name>: Enable plugin
+  plugin disable <plugin_name>: Disable plugin
+status.version: |
+  {0} Version: {1}
+status.receive_server_status: |
+  Receive server status: {0}
+status.receive_server_status.running: |
+  Running
+status.receive_server_status.stopped: |
+  Stopped
+status.thread_count: |
+  Thread number: {0}
+status.thread_list: |
+  Thread list:
+server.load_config.set_lang: |
+  Language has set to {0}
+server.load_config.set_api_url: |
+  API URL has set to {0}
+server.load_config.set_receive_url: |
+  Receive URL has set to {0}
+server.load_config.debug_on: |
+  Debug mode on
+server.load_config.debug_off: |
+  Debug mode off
+server.start.starting: |
+  Receive server is starting up
+server.start.twice: |
+  Receive server is already running
+server.stop.stopping: |
+  Receive server is stopping
+server.stop.twice: |
+  Receive server has stopped
+server.console_input.error: |
+  Console input error
+plugin_manager.no_plugin_exist: |
+  Plugin {0} is not exist
+plugin_manager.loading: |
+  Loading plugins
+plugin_manager.load_plugin.success: |
+  Plugin {0} load success
+plugin_manager.load_plugin.fail: |
+  Plugin {0} load fail
+plugin_manager.unload_plugin.unload_success: |
+  Plugin {0} unload success
+plugin_manager.unload_plugin.unload_fail: |
+  Plugin {0} unload fail
+plugin_manager.reload_plugin.reload_success: |
+  Plugin {0} reload success
+plugin_manager.reload_plugin.reload_fail: |
+  Plugin {0} reload fail
+plugin_manager.plugin_loaded: |
+  Loaded: {0} plugins
+plugin_manager.plugin_disabled: |
+  Disabled: {0} plugins
+plugin_manager.plugin_unload: |
+  Unload: {0} plugins
+bye: |
+  Bye

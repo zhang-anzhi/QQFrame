@@ -1,0 +1,78 @@
+message.help_message.all: |
+  help: 显示帮助
+  stop: 停止并退出
+  status: 显示状态信息
+  reload: 重载指令
+  server: 接收服务器控制指令
+  plugin: 插件管理指令
+message.help_message.reload: |
+  reload all: 重载接收服务器/配置文件/插件
+  reload server: 重载接收服务器
+  reload config: 重载配置文件
+  reload plugin: 重载插件
+message.help_message.server: |
+  server start: 开启接收服务器
+  server stop: 关闭接收服务器
+message.help_message.plugin: |
+  plugin list: 列出所有插件
+  plugin load <file_name>: 加载插件
+  plugin unload <plugin_name>: 卸载插件
+  plugin reload <plugin_name>: 重载插件
+  plugin enable <file_name>: 启用插件
+  plugin disable <plugin_name>: 禁用插件
+status.version: |
+  {0} 版本: {1}
+status.receive_server_status: |
+  接收服务器状态: {0}
+status.receive_server_status.running: |
+  运行中
+status.receive_server_status.stopped: |
+  已关闭
+status.thread_count: |
+  线程数: {0}
+status.thread_list: |
+  当前线程列表:
+server.load_config.set_lang: |
+  语言已设置为 {0}
+server.load_config.set_api_url: |
+  API URL已设为 {0}
+server.load_config.set_receive_url: |
+  接收 URL已设为 {0}
+server.load_config.debug_on: |
+  调试模式已开启
+server.load_config.debug_off: |
+  调试模式已关闭
+server.start.starting: |
+  接收服务器正在启动
+server.start.twice: |
+  接收服务器已经启动
+server.stop.stopping: |
+  接收服务器正在关闭
+server.stop.twice: |
+  接收服务器已经关闭
+server.console_input.error: |
+  控制台输入出错
+plugin_manager.no_plugin_exist: |
+  插件 {0} 不存在
+plugin_manager.loading: |
+  加载插件中
+plugin_manager.load_plugin.success: |
+  插件 {0} 已加载
+plugin_manager.load_plugin.fail: |
+  插件 {0} 加载失败
+plugin_manager.unload_plugin.unload_success: |
+  插件 {0} 已卸载
+plugin_manager.unload_plugin.unload_fail: |
+  插件 {0} 卸载失败
+plugin_manager.reload_plugin.reload_success: |
+  插件 {0} 已重载
+plugin_manager.reload_plugin.reload_fail: |
+  插件 {0} 重载失败
+plugin_manager.plugin_loaded: |
+  已加载: {0} 个插件
+plugin_manager.plugin_disabled: |
+  已禁用: {0} 个插件
+plugin_manager.plugin_unload: |
+  未加载: {0} 个插件
+bye: |
+  再见

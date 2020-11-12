@@ -1,0 +1,4 @@
+receive_url: http://127.0.0.1:5701/post
+api_url: http://127.0.0.1:5700
+debug_mode: true
+lang: zh_cn

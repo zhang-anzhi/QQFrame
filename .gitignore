@@ -1,0 +1,17 @@
+# Pycharm
+.idea/
+
+# Python files
+venv/
+utils/__pycache__
+utils/parser/__pycache__
+
+# QQFrame files
+logs/
+plugins/
+config/
+config.yaml
+
+# My files
+start.bat
+release/
