@@ -10,7 +10,7 @@ utils/parser/__pycache__
 logs/
 plugins/
 config/
-config.yaml
+config.yml
 
 # My files
 start.bat

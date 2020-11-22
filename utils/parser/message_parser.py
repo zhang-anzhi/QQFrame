@@ -30,4 +30,6 @@ class MessageParser(BaseParser):
         content = re.sub(r'\[CQ:face,id=.*?\]', '[表情]', content)
         content = re.sub(r'\[CQ:record,file=.*?\]', '[语音]', content)
         content = content.replace('CQ:at,qq=', '@')
+        content = content.replace('&#91;', '[')
+        content = content.replace('&#93;', ']')
         return content

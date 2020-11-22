@@ -72,12 +72,9 @@ QQFrame 为插件提供了以下事件, 事件被触发时会调用插件内已�
 
 | 方法 | 功能 |
 |-|-|
-| load_plugin(plugin_name) | 加载或重载名为 `plugin_name` 的插件 |
-| unload_plugin(plugin_name) | 卸载名为 `plugin_name` 的插件 |
-| enable_plugin(file_name) | 启用名为 `file_name` 的插件 |
-| disable_plugin(file_name) | 禁用名为 `file_name` 的插件 |
 | get_plugin_list() | 返回当前已加载插件列表 |
-| refresh_all_plugins() | 重载所有已加载插件, 加载未加载插件 |
+| get_plugin_info(plugin_name) | 返回名为 `plugin_name` 的插件信息字典 |
+| reload_plugin(plugin_name) | 重载名为 `plugin_name` 的插件 |
 | get_plugin_instance(plugin_name) | 获取名为 `plugin_name` 的插件实例 |
 | call_event(plugin_name, func_name, args) | 启用新线程运行插件 `plugin_name` 的函数 `func_name`, 使用参数 `args` 为元组, 返回布尔的运行结果 |
 

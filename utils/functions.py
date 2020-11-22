@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import re
 import sys
 import time
 import importlib.util
@@ -32,6 +31,23 @@ def load_source(path, name=None):
     return module
 
 
+def get_file_size(file_path):
+    size = os.path.getsize(file_path)
+    if size < (2 ** 10):
+        return f'{round(size, 2)} B'
+    if size < (2 ** 20):
+        return f'{round(size / (2 ** 10), 2)} KB'
+    else:
+        return f'{round(size / (2 ** 20), 2)} MB'
+
+
+def get_file_modify_time(file_path):
+    return time.strftime(
+        '%Y-%m-%d %H:%M:%S',
+        time.localtime(os.path.getmtime(file_path))
+    )
+
+
 def list_file(folder, suffix):
     """Return file list in folder if file suffix is suffix"""
     file_list = []
@@ -40,33 +56,6 @@ def list_file(folder, suffix):
         if os.path.isfile(file_path) and file_path.endswith(suffix):
             file_list.append(file_path)
     return file_list
-
-
-def remove_suffix(name: str):
-    """Remove path suffix"""
-    return re.sub(r'\.((?!\.).)*$', '', name)
-
-
-def change_suffix(name: str, suffix: str):
-    """Change or path suffix"""
-    return remove_suffix(name) + suffix
-
-
-def change_file_suffix(path: str, suffix: str):
-    """Change file suffix and rename"""
-    if os.path.isfile(path):
-        os.rename(path, change_suffix(path, suffix))
-
-
-def format_file_path(name: str, suffix: str, folder=None):
-    if name.endswith(suffix):
-        name = name
-    else:
-        name = change_suffix(name, suffix)
-    if folder is not None:
-        return os.path.join(folder, name)
-    else:
-        return name
 
 
 def touch_folder(folder_name: str) -> bool:
@@ -83,7 +72,7 @@ def backup_log(logging_file: str) -> None:
     if os.path.isfile(logging_file):
         modify_time = time.strftime(
             '%Y-%m-%d',
-            time.localtime(os.stat(logging_file).st_mtime)
+            time.localtime(os.path.getmtime(logging_file))
         )
         count = 0
         while True:

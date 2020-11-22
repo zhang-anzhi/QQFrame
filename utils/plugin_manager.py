@@ -14,7 +14,7 @@ class PluginManager:
         self.plugins = []
 
         # Touch plugin and config folder
-        func.touch_folder(constant.PLUGIN_FOLDER)
+        func.touch_folder(self.plugin_folder)
         func.touch_folder(constant.PLUGIN_CONFIG_FOLDER)
 
     def get_plugin_file_list(self):
@@ -22,18 +22,13 @@ class PluginManager:
         return func.list_file(self.plugin_folder,
                               constant.PLUGIN_FILE_SUFFIX)
 
-    def get_disabled_plugin_file_list(self):
-        """Get .disabled file list in plugin folder"""
-        return func.list_file(self.plugin_folder,
-                              constant.DISABLED_PLUGIN_FILE_SUFFIX)
-
     def get_loaded_plugin_name_dict(self):
         """Get a dict, which key is the plugin name; value is plugin instance"""
         return {plugin.name: plugin for plugin in self.plugins}
 
     def get_loaded_plugin_file_name_dict(self):
         """
-        Get a dict
+        Get a dict,
         which key is the plugin file name; value is plugin instance
         """
         return {plugin.file_name: plugin for plugin in self.plugins}
@@ -88,52 +83,6 @@ class PluginManager:
                 self.plugins.remove(plugin)
             return False
 
-    def unload_plugin(self, plugin_name: Plugin or str) -> bool:
-        """Unload single plugin with plugin name"""
-        plugin = self.get_plugin(plugin_name)
-        try:
-            plugin.unload()
-            self.plugins.remove(plugin)
-            self.logger.info(
-                self.server.t('plugin_manager.unload_plugin.unload_success',
-                              plugin.file_name))
-            return True
-        except:
-            self.logger.exception(
-                self.server.t('plugin_manager.unload_plugin.unload_fail',
-                              plugin.file_name))
-            return False
-
-    def enable_plugin(self, file_name: str):
-        """Enable plugin and load for file name"""
-        file_name = os.path.basename(file_name)
-        file_path = os.path.join(self.plugin_folder, file_name)
-        func.change_file_suffix(file_path, constant.PLUGIN_FILE_SUFFIX)
-        file_name = func.change_suffix(file_name, constant.PLUGIN_FILE_SUFFIX)
-        return self.load_plugin(file_name)
-
-    def disable_plugin(self, plugin: Plugin or str):
-        """Unload and disable plugin for Plugin object/plugin name/file name"""
-        # Plugin object or plugin name: unload
-        plugin_obj = self.get_plugin(plugin)
-        if plugin_obj is not None:
-            self.unload_plugin(plugin_obj)
-            func.change_file_suffix(
-                plugin_obj.file_path, constant.DISABLED_PLUGIN_FILE_SUFFIX)
-
-        # File name: unload if find
-        else:
-            for i in self.plugins:
-                if plugin == i.file_name:
-                    plugin_obj = i
-                    self.unload_plugin(plugin_obj)
-            file_path = os.path.join(
-                self.plugin_folder,
-                func.change_suffix(plugin, constant.PLUGIN_FILE_SUFFIX)
-            )
-            func.change_file_suffix(
-                file_path, constant.DISABLED_PLUGIN_FILE_SUFFIX)
-
     # -------------------------
     # Multiple plugin operation
     # -------------------------
@@ -145,11 +94,6 @@ class PluginManager:
             self.load_plugin(os.path.basename(file_name))
         self.logger.info(self.server.t('plugin_manager.plugin_loaded',
                                        len(self.get_loaded_plugin_name_list())))
-
-    def unload_all_plugins(self):
-        """Unload all loaded plugins"""
-        for plugin in self.plugins:
-            self.unload_plugin(plugin.name)
 
     # ----------
     # Event call

@@ -3,7 +3,7 @@ import os
 import re
 
 # basic information
-VERSION = '0.0.1'
+VERSION = '0.1.0'
 NAME = 'QQFrame'
 
 # file

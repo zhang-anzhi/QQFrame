@@ -49,7 +49,7 @@ Python模块依赖已存储在 `requirements.txt` 中, 可以使用 `pip install
 
 ## 插件
 
-阅读 [插件开发文档](doc\plugin.md) 查看插件开发文档
+阅读 [插件开发文档](doc/plugin.md) 查看插件开发文档
 
 ## 指令
 
@@ -61,15 +61,11 @@ Python模块依赖已存储在 `requirements.txt` 中, 可以使用 `pip install
 | reload | 重载指令 |
 | server | 接收服务器控制指令 |
 | plugin | 插件管理指令 |
-| reload all | 重载接收服务器/配置文件/插件 |
+| reload all | 重载所有 |
 | reload server | 重载接收服务器 |
 | reload config | 重载配置文件 |
-| reload plugin | 重载插件 |
 | server start | 开启接收服务器 |
 | server stop | 关闭接收服务器 |
 | plugin list | 列出所有插件 |
-| plugin load <file_name> | 加载插件 |
-| plugin unload <plugin_name> | 卸载插件 |
+| plugin info <plugin_name> | 显示插件信息 |
 | plugin reload <plugin_name> | 重载插件 |
-| plugin enable <file_name> | 启用插件 |
-| plugin disable <plugin_name> | 禁用插件 |

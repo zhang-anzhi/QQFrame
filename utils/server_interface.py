@@ -84,46 +84,6 @@ class ServerInterface:
     # ------
 
     @log
-    def load_plugin(self, plugin_name: str) -> bool:
-        """
-        Load or reload the plugin
-
-        :param plugin_name: Plugin name or file name
-        :return: Return True if Load succeeded without exception else False
-        """
-        return self.__server.plugin_manager.load_plugin(plugin_name)
-
-    @log
-    def unload_plugin(self, plugin_name: str) -> bool:
-        """
-        Unload the plugin
-
-        :param plugin_name: Plugin name or file name
-        :return: Return True if Unload succeeded without exception else False
-        """
-        return self.__server.plugin_manager.unload_plugin(plugin_name)
-
-    @log
-    def enable_plugin(self, file_name: str):
-        """
-        Enable the plugin
-
-        :param file_name: Plugin file name, it can be "plugin.py" or "plugin"
-        """
-        self.__server.plugin_manager.enable_plugin(file_name)
-
-    @log
-    def disable_plugin(self, file_name: str):
-        """
-        Disable the plugin
-
-        :param file_name:
-        Plugin file name, it can be "plugin.py" or "plugin",
-        or plugin name in PLUGIN_INFO
-        """
-        return self.__server.plugin_manager.disable_plugin(file_name)
-
-    @log
     def get_plugin_list(self) -> list:
         """
         Return a str list containing all loaded plugin name
@@ -133,12 +93,30 @@ class ServerInterface:
         return self.__server.plugin_manager.get_loaded_plugin_name_list()
 
     @log
-    def refresh_all_plugins(self):
+    def get_plugin_info(self, plugin_name: str) -> dict:
         """
-        Reload all plugins,
-        load all new plugins and then unload all removed plugins
+        Get the plugin info dict
+
+        :param plugin_name: Plugin name
+        :return: Plugin info dict
         """
-        self.__server.plugin_manager.load_all_plugins()
+        if plugin_name in self.server.plugin_manager.get_loaded_plugin_name_list():
+            plugin = self.server.plugin_manager.get_plugin(plugin_name)
+            return plugin.plugin_info
+
+    @log
+    def reload_plugin(self, plugin_name: str) -> bool:
+        """
+        Reload the plugin
+
+        :param plugin_name: Plugin name
+        :return: Return True if Load succeeded without exception else False
+        """
+        if plugin_name in self.server.plugin_manager.get_loaded_plugin_name_list():
+            self.server.plugin_manager.load_plugin(plugin_name)
+            return True
+        else:
+            return False
 
     @log
     def get_plugin_instance(self, plugin_name: str) -> Plugin:
